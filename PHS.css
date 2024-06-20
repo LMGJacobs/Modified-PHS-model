@@ -1,0 +1,189 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and list styles */
+body, ol {
+    padding: 5px;
+    margin: 5px;
+}
+
+ul, li {
+    padding: 3px;
+    margin: 3px;
+}
+
+/* Custom utility */
+
+/* Wtab menu */
+.wtab_menu ul {
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.wtab_menu li {
+    list-style: none;
+    background-color: #bbb;
+    border: 1px solid #aaa;
+    padding: 10px 5px;
+    margin-right: 2px;
+    display: inline-block;
+    width: 100px;
+    cursor: pointer;
+    border-bottom: none;
+}
+
+.wtab_menu li.wtab_active {
+    background-color: #f1f1f1;
+    top: 1px;
+    position: relative;
+    padding-top: 11px;
+    z-index: 100;
+}
+
+/* Wtab content */
+.wtab_cont {
+    display: none;
+    padding: 10px;
+}
+
+.wtab_cont.wtab_active {
+    display: block;
+}
+
+/* Parameter styles */
+.parameter-container {
+    max-width: 80vh;
+    margin: 1em 1em;
+}
+
+.parameter {
+    max-width: 80vh;
+    overflow: hidden;
+}
+
+.parameter > * {
+    vertical-align: middle;
+}
+
+button {
+    flex: 1;
+    margin-right: 5px;
+}
+
+.parameter_button_stack {
+    display: flex;
+}
+
+.parameter_symbol, .parameter_unit, .parameter_description {
+    display: inline-block;
+    width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.parameter_description {
+    width: 50vh;
+}
+
+.parameter_symbol {
+    width: 80px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.parameter_local .parameter_symbol {
+    font-weight: normal;
+}
+
+.parameter_value {
+    margin-left: 2px;
+    margin-right: 2px;
+    text-align: right;
+    width: 60px;
+}
+
+.parameter_unit:before {
+    content: "[";
+}
+
+.parameter_unit:after {
+    content: "]";
+}
+
+.parameter_used_as_input {
+    border: 1px solid grey;
+}
+
+#ext_Trad .parameter,
+#ext_Trad .ext_info,
+#ext_humidity .parameter,
+#ext_humidity .ext_info {
+    background-color: #b0c4de;
+}
+
+#ext_Trad .parameter_symbol,
+#ext_humidity .parameter_symbol {
+    width: 80px;
+}
+
+#zext_Trad .parameter,
+#zext_humidity .parameter {
+    width: 370px;
+}
+
+/* Table styles */
+table {
+    font-family: verdana, arial, sans-serif;
+    color: black;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table tr:hover {
+    background-color: #d4e3e5;
+}
+
+tr.cname {
+    background-color: lightgrey;
+}
+
+table th,
+table td {
+    border-width: 1px;
+    padding: 4px;
+    border-style: none solid;
+    text-align: center;
+}
+
+.rim5,
+.rim10 {
+    background-color: whitesmoke;
+}
+
+.char_label0 {
+    color: rgb(151, 187, 205);
+    margin-left: 5em;
+}
+
+.char_label1,
+.char_label2,
+.char_label3 {
+    color: rgb(121, 255, 77);
+    margin-left: 2em;
+}
+
+.char_label2,
+.char_label3 {
+    color: rgb(150, 0, 235);
+}
+
+.char_label3 {
+    color: rgb(0, 0, 235);
+}

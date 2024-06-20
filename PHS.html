@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+          "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="lib/PHS.css"/>
+    <title>PHS Calculation</title>
+  </head>
+  <body onload="wci.onload('par');">
+    <h1>PHS simulation based on the annex E in ISO/FDIS 7933</h1>
+    <div>Note: This is work in progress!!!</div>
+    <noscript>
+      <div>
+        JavaScript is <strong>disabled</strong> in your web browser
+        and this page will <strong>not</strong> work!
+      </div>
+    </noscript>
+
+    <ul class="wtab_menu">
+      <li id="wtab_menu_par" class="wtab_active" onclick="wci.wtab_select(this);">Parameters</li>
+      <li id="wtab_menu_graph" onclick="wci.wtab_select(this);">Graph</li>
+      <li id="wtab_menu_table" onclick="wci.wtab_select(this);">Table</li>
+      <li id="wtab_menu_all" onclick="wci.wtab_select_all(['par','graph','table']);">All</li>
+      <li id="wtab_menu_about" onclick="wci.wtab_select(this);">About</li>
+    </ul>
+    <!-- tab -->
+    <div id="wtab_cont_par" class="wtab_cont wtab_active">
+      <h2>Input parameters simulation</h2>
+      <div class="parameter-container">
+        <div class="parameter" id="par_accl"></div>
+        <div class="parameter" id="par_drink"></div>
+        <div class="parameter" id="par_height"></div>
+        <div class="parameter_stack">
+          <div class="parameter" id="par_mass"></div>
+          <div class="parameter parameter_local" id="par_Adu"></div>
+        </div>
+        <div class="parameter" id="par_sim_mod"></div>
+      </div>
+      <h2>Input parameters time step</h2>
+      <div class="parameter-container">
+        <div class="parameter" id="par_post"></div>
+        <div class="parameter" id="par_Tair"></div>
+        <div class="parameter" id="par_v_air"></div>
+        <!-- humidity -->
+        <div class="parameter_button_stack">
+          <div class="parameter parameter_float_left" id="par_Pw_air"></div>
+          <button onclick="wci.toggle_visibility('#ext_humidity');">+-</button>
+        </div>
+        <div id="ext_humidity" style="display: none;">
+          <div class="parameter" id="par_humid_RH"></div>
+          <div class="parameter" id="par_humid_W"></div>
+          <div class="parameter" id="par_humid_Tdew"></div>
+          <div class="parameter" id="par_humid_Twb"></div>
+          <div class="parameter" id="par_humid_Pws"></div>
+          <div class="parameter" id="par_humid_Patm"></div>
+          <div class="parameter_float_left ext_info"><i>This calculation is also using Tair</i></div>
+        </div>
+        <!-- Trad -->
+        <div class="parameter_button_stack">
+          <div class="parameter parameter_float_left" id="par_Trad"></div>
+          <button onclick="wci.toggle_visibility('#ext_Trad');">+-</button>
+        </div>
+        <div id="ext_Trad" style="display: none;">
+          <!-- div class="parameter parameter_local" id="par_globe_Trad"></div -->
+          <div class="parameter parameter_local" id="par_globe_Tg"></div>
+          <div class="parameter parameter_local" id="par_globe_emi"></div>
+          <div class="parameter parameter_local" id="par_globe_diam"></div>
+          <div class="parameter_float_left ext_info"><i>The calculation is also using Tair and v_air</i></div>
+        </div>
+        <div class="parameter_stack">
+          <div class="parameter" id="par_Met"></div>
+          <div class="parameter parameter_local" id="par_Met_W"></div>
+        </div>
+        <div class="parameter" id="par_Icl"></div>
+        <div class="parameter" id="par_im_st"></div>
+        <div class="parameter" id="par_fAref"></div>
+        <div class="parameter" id="par_Fr"></div>
+        <div class="parameter" id="par_walk_dir"></div>
+        <div class="parameter" id="par_v_walk"></div>
+        <div class="parameter" id="par_work"></div>
+        <div class="parameter" id="par_timestep"></div>
+      </div>
+      <div id ="par_start">
+        <button type="button" onclick="wci.doPHS(true)">Start simulation</button>
+        <button type="button" onclick="wci.doPHS(false)">Add timestep</button>
+      </div>
+      <div><p>Input parameters time step</p>
+        <div id="sim_inparam_step">No simulation done</div>
+      </div>
+      <div><p>Input parameters simulation</p>
+        <div id="sim_inparam_sim">No simulation done</div>
+      </div>
+      <div><p>Simulation result at end</p>
+        <div id="sim_result_at_end">No simulation done</div>
+      </div>
+      <div><p>Summary simulation result</p>
+        <div id="sim_result_at_time">No simulation done</div>
+      </div>
+    </div>
+    <!-- tab -->
+    <div id="wtab_cont_graph" class="wtab_cont">
+      <div id="phs_graph">No simulation done</div>
+    </div>
+    <!-- tab -->
+    <div id="wtab_cont_table" class="wtab_cont">
+      <div id="phs_out">No simulation done</div>
+    </div>
+    <!-- tab -->
+    <div id="wtab_cont_about" class="wtab_cont">
+      <p>This is an application which uses PHS.js which is a JavaScript implementation
+      of the Predicted Heat Strain (PHS) model described in the standard
+      "ISO/FDIS 7933 Ergonomics of the thermal environment &mdash;
+      Analytical determination and interpretation of heat stress using
+      calculation of the predicted heat strain".
+      PHS.js is based on
+      "Predicted Heat Strain (PHS) model: computation program written in Quick Basic"
+      in Annex E of the standard.</p>
+      <p>The following links are opened in a separate frame</p>
+      <ul>
+        <li><a href="PHS_about.html" target="_blank">The PHS
+        calculation and its development</a></li>
+        <li><a href="PHS_how_to_use.html" target="_blank">How to use the
+        PHS.js library</a></li>
+        <li><a href="PHS.js.html" target="_blank">PHS.js code</a></li>
+        <li><a href="PHS_rel_ISO7933.js.html" target="_blank">PHS.js code
+        with code from annex E in ISO/FDIS 7933 as comments.</a></li>
+        <li><a href="PHS_license.html" target="_blank">PHS Calculation License</a></li>
+      </ul>
+    </div>
+    <script type="text/javascript" src="lib/window_tab_util.js"></script>
+    <script type="text/javascript" src="lib/canvas_util.js"></script>
+    <script type="text/javascript" src="lib/diagram_util.js"></script>
+    <script type="text/javascript" src="lib/parameter_data_obj.js"></script>
+    <script type="text/javascript" src="lib/PHS.js"></script>
+    <script type="text/javascript" src="lib/humidity_obj.js"></script>
+    <script type="text/javascript" src="lib/mean_rad_temp_obj.js"></script>
+    <script type="text/javascript" src="lib/parameter_wci.js"></script>
+    <script type="text/javascript" src="lib/html_fragment_obj.js"></script>
+    <script type="text/javascript" src="lib/PHS_inpar_wci.js"></script>
+    <script type="text/javascript" src="lib/data_table_obj.js"></script>
+    <script type="text/javascript" src="lib/PHS_run_simulation.js"></script>
+    <script type="text/javascript" src="lib/PHS_wci.js"></script>
+    <script type="text/javascript"> const wci = boj.PHS_wci;</script>
+  </body>
+</html>

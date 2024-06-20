@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+          "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="lib/PHS.css"/>
+    <title>How to  use PHS.js</title>
+  </head>
+  <body>
+    <p>PHS.js is a JavaScript implementation
+    of the Predicted Heat Strain (PHS) model described in the standard
+    "ISO/FDIS 7933 Ergonomics of the thermal environment &mdash;
+    Analytical determination and interpretation of heat stress using
+    calculation of the predicted heat strain".
+    PHS.js is based on "Predicted
+    Heat Strain (PHS) model: computation program written in Quick Basic"
+    in Annex E of the standard.</p>
+    <p>PHS.js export the following functions:</p>
+    <ul>
+      <li><strong>par_spec_aoh</strong> &ndash; References to parameter specifications.</li>
+      <li><strong>reset</strong> &ndash; Set all variale values to NaN.</li>
+      <li><strong>sim_init</strong> &ndash; Initialize a simulation.</li>
+      <li><strong>state</strong> &ndash; Returns a number of variables
+      which reflects the main state of the simulation.</li>
+      <li><strong>time_step</strong> &ndash; Do a time step in a simulation,
+      returns the same as the function state.</li>
+      <li><strong>current_result</strong> &ndash; Returns variables
+      showing the current main result of a simulation.</li>
+      <li><strong>sample_get</strong> &ndash; Returns a number of
+      variable which can be used in the debugging of the simulation.</li>
+    </ul>
+    <p>Loading PHS.js results in a <strong>global variable boj.PHS</strong> which
+      contains an associative array with references
+      to the exported functions.</p>
+    <p>Parmeters are handeled using parameter_util.js, which provide
+    functions for setting default values and accessing the
+    parmeters. In the beginning of PHS.js there are descriptions of
+    the parameters. Parameters in par_spec_sim must not be changed
+    during a simulation. Paramters in par_spec_step can be changed
+    between time steps in the simulation.</p>
+    <p>The text below assumes the statetment <code>var phs = boj.PHS;</code>.</p>
+    <p>The main steps in a PHS simulation are:</p>
+    <ol>
+      <li>(optional) <code>phs.reset();</code></li>
+      <li> Set parameters using parameter_util.js.</li>
+      <li><code>phs.sim_init();</code></li>
+      <li>For each time step
+        <ul>
+	  <li><code>phs.time_step();</code></li>
+	  <li>(optional) save the return values.</li>
+	  <li>(optional) change parameters.</li>
+        </ul>
+      </li>
+      <li><code>phs.current_result()</code></li>
+    </ol>
+    <p>PHS_wci.js (used by PHS.html) is an example of how PHS.js can be used.</p>
+    <p>One of the goal with PHS.js is to be CPU efficient.
+    The <code>time_step()</code> function will be the most frequently
+    used function and it should do as little as possible.
+    Calculations which results do not changed in a time step are done by the change of
+    parameters.</p>
+  </body>
+</html>
